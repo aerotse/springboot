@@ -13,6 +13,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 /**
  * Created by liuhui.
+ * @author Liuh
  */
 @MapperScan(basePackages = "com.liuh.*.mapper")
 @Configuration
@@ -29,17 +30,7 @@ public class MyBatisConfig {
         sqlSessionFactoryBean.setDataSource(druidConfig.mysqlDataSource());
         sqlSessionFactoryBean.setTypeAliasesPackage("com.liuh");
 
-        //分页插件
-       /* PagePlugin pagePlugin = new PagePlugin();
-        Properties properties = new Properties();
-        properties.setProperty("dialect", "mysql");
-        properties.setProperty("pageSqlId", ".*query.*");
-        pagePlugin.setProperties(properties);
 
-        //添加插件
-        sqlSessionFactoryBean.setPlugins(new Interceptor[]{pagePlugin});*/
-
-        //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
             sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:mybatis/*/*Mapper.xml"));
